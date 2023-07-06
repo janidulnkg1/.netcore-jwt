@@ -16,6 +16,7 @@ namespace AuthendicationJWTToken
                 return null;
             }
 
+            var tokenExpiryTimeStamp = DateTime.Now.AddMinutes(Constants.JWT_TOKEN_VALIDITY_MINS);
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var tokenKey = Encoding.ASCII.GetBytes(Constants.JWT_SECURITY_KEY);
             var securityTokenDescriptor = new SecurityTokenDescriptor
@@ -27,6 +28,16 @@ namespace AuthendicationJWTToken
                 }),
                 Expires = DateTime.Now.AddMinutes(Constants.JWT_TOKEN_VALIDITY_MINS),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var securityToken = jwtSecurityTokenHandler.CreateToken(securityTokenDescriptor);
+            var token = jwtSecurityTokenHandler.WriteToken(securityToken);
+
+            return new JwtAuthResponse
+            { 
+                token = token,
+                user_name = userName,
+                expires_in = (int)tokenExpiryTimeStamp.Subtract(DateTime.Now).TotalSeconds
             };
 
 
