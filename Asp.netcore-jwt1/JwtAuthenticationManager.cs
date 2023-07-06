@@ -6,8 +6,6 @@ using System.Text;
 
 namespace AuthendicationJWTToken
 {
-
-
     public class JwtAuthenticationManager
     {
        public JwtAuthResponse Authenticate(string userName, string password)
@@ -41,13 +39,6 @@ namespace AuthendicationJWTToken
                 user_name = userName,
                 expires_in = (int)tokenExpiryTimeStamp.Subtract(DateTime.Now).TotalSeconds
             };
-
-
         }
-
-
-
-
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using AuthendicationJWTToken.Models;
+﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +11,8 @@ namespace AuthendicationJWTToken.Controllers
     {
         [HttpPost]
         [Route("Login")]
+        //allow user can access this method 
+        [AllowAnonymous]
         public IActionResult Login([FromForm]AuthendicationRequest authendicationRequest)
         {
          //create the object of jwt authendication manager
