@@ -1,4 +1,4 @@
-﻿namespace AuthendicationJWTToken
+﻿namespace AuthendicationJWTToken.Models
 {
     [Serializable]
     public class JwtAuthResponse

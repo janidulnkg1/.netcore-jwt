@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using AuthendicationJWTToken.Models;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -6,11 +7,12 @@ using System.Text;
 namespace AuthendicationJWTToken
 {
 
-   
+
     public class JwtAuthenticationManager
     {
        public JwtAuthResponse Authenticate(string userName, string password)
         {
+            //validate the username and password 
             if(userName != "user01" || password != "password123")
             {
                 return null;
